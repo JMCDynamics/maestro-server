@@ -1,0 +1,21 @@
+services:
+  maestro-server:
+    container_name: maestro-server
+    build: .
+    extra_hosts:
+      - "localhost:10.10.0.1"
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - HOST_ADDRESS=192.168.1.222
+    ports:
+      - "51825:51820/udp"
+      - "6276:6276"
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    volumes:
+      - ./wireguard:/config
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:

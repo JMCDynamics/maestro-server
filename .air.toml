@@ -1,0 +1,44 @@
+# .air.toml
+
+# Build settings
+[build]
+  # Command to build the application
+  cmd = "go build -o bin/api cmd/api/main.go"
+  # Path to the built binary
+  bin = "./bin/api"
+
+# Root directory of the project
+[core]
+  # The directory to watch for changes
+  root = "."
+
+  # The file extensions to watch for changes
+  extensions = ["go"]
+
+  # Whether to show build status on the console
+  watch_build = true
+
+  # Whether to restart the binary after the build
+  restart = true
+
+# Directory settings
+[watch]
+  # Directories to watch
+  dirs = [
+    "cmd",      # Watch the cmd directory where the main package is located
+    "internal", # You can add other directories if needed
+    "pkg"       # You can add the pkg directory if needed
+  ]
+
+  # Files to exclude from watching
+  ignore = [
+    "bin",      # Do not watch the bin directory
+    "vendor"    # Do not watch the vendor directory
+  ]
+
+# Log settings
+[log]
+  # Log level can be "debug", "info", "warn", "error"
+  level = "info"
+
+# You can add other settings if necessary, such as `color`, `tmp_dir`, etc.
